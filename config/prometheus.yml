@@ -1,0 +1,29 @@
+global:
+  # Define o intervalo de tempo para coleta de métricas
+  scrape_interval: 15s
+
+# Define as configurações de scrape
+scrape_configs:
+  # Configuração para coleta de métricas do node_exporter
+  - job_name: 'node_exporter'
+    static_configs:
+      # Define o alvo de coleta de métricas
+      - targets: ['localhost:9100']
+  
+
+  # Exemplos de outros endpoints pra monitorar endpoints:
+
+  # - job_name: 'apache'
+  #   static_configs:
+  #     - targets: ['apache_host:9117']
+
+  # - job_name: 'mysql'
+  #   static_configs:
+  #       - targets: ['mysql_host:9104']
+
+# Lembre-se de substituir apache_host pelo endereço do servidor Apache que você deseja monitorar e 9117 pela porta em que o apache_exporter está escutando.
+
+# Depois de adicionar essas seções de configuração ao arquivo prometheus.yml, basta reiniciar o serviço Prometheus com o seguinte comando:
+
+# sudo systemctl restart prometheus
+# O Prometheus agora irá coletar dados dos endpoints adicionais que você configurou e você poderá visualizá-los no dashboard do Grafana.
